@@ -1,0 +1,33 @@
+Resumen de verificacion - 2026-10-19 15:56:23 - contenedor eif402-iso27001
+-----------------------------------------------------------------------------
+PB-00  | CUMPLE     | FREEPDB1 READ WRITE; SEGCONF.CLIENTES=60 filas; SEGCONF_DEV.CLIENTES=60 filas
+PB-01a | CUMPLE     | Cuenta de demostracion SCOTT: EXPIRED & LOCKED
+PB-01b | CUMPLE     | Cuentas abiertas con clave por defecto: 0
+PB-02a | CUMPLE     | Cuentas con FAILED_LOGIN_ATTEMPTS > 5 o ilimitado: 0 de 6
+PB-02b | CUMPLE     | Cuentas sin PASSWORD_VERIFY_FUNCTION: 0 de 6
+PB-02c | CUMPLE     | Cuentas con PASSWORD_LIFE_TIME > 90 dias o ilimitado: 0 de 6
+PB-03a | CUMPLE     | Usuarios/roles no administrativos con SELECT ANY TABLE: 0
+PB-03b | CUMPLE     | Paquetes UTL_* con EXECUTE para PUBLIC: 0
+PB-03c | CUMPLE     | Permisos directos a usuarios sobre SEGCONF.CLIENTES: 0
+PB-04a | CUMPLE     | Keystore TDE en FREEPDB1: OPEN
+PB-04b | CUMPLE     | Tablespace TS_SEGCONF_ENC cifrado: YES
+PB-04c | CUMPLE     | Segmentos de SEGCONF.CLIENTES (tabla e indices) en tablespace cifrado: 2 de 2
+PB-05a | CUMPLE     | Politicas de redaccion habilitadas sobre SEGCONF.CLIENTES: 1
+PB-05b | CUMPLE     | APP_CONSULTA ve tarjeta=****-****-****-0001 email=xxxx@correo-ficticio.test salario=0
+PB-06a | CUMPLE     | Politicas VPD habilitadas sobre SEGCONF.CLIENTES: 1
+PB-06b | CUMPLE     | APP_SOPORTE ve 9 de 60 filas en 1 provincia(s); esperado 9 en 1 (HEREDIA)
+PB-07a | CUMPLE     | Politicas unificadas habilitadas que auditan SELECT sobre SEGCONF.CLIENTES: 1
+PB-07b | CUMPLE     | Registros de auditoria del SELECT de prueba de APP_CONSULTA: 2
+PB-08a | CUMPLE     | Sesion TCP: cifrado=AES256; integridad=SHA512
+PB-08b | CUMPLE     | Cliente con cifrado REJECTED fue rechazado (ORA-12660)
+PB-09a | CUMPLE     | Modo de registro de la base: ARCHIVELOG
+PB-09b | CUMPLE     | Piezas de respaldo de FREEPDB1: cifradas=1, sin cifrar=0
+PB-10  | CUMPLE     | Filas del clon con algun dato personal identico a produccion: 0 de 60
+PB-11a | CUMPLE     | Objetos en la papelera de SEGCONF/SEGCONF_DEV: 0
+PB-11b | CUMPLE     | Copias temporales de datos confidenciales: 0
+PB-12a | CUMPLE     | APP_REPORTES sobre el detalle de CLIENTES: DENEGADO ORA-00942: table or view "SEGCONF"."CLIENTES" does not exist
+PB-12b | CUMPLE     | SEGCONF_DEV sobre SEGCONF.CLIENTES: DENEGADO ORA-00942: table or view "SEGCONF"."CLIENTES" does not exist
+-----------------------------------------------------------------------------
+CUMPLE      27
+NO CUMPLE   0
+NO DISPON.  0

@@ -1,0 +1,6 @@
+node_modules
+datos
+docs/capturas
+tests/e2e/resultados
+.env
+herramientas

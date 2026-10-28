@@ -1,0 +1,27 @@
+{
+  "name": "sistema-auditoria-iso27001",
+  "version": "1.0.0",
+  "description": "Sistema web de auditoria de controles ISO/IEC 27001:2022 para bases de datos Oracle",
+  "main": "src/server.js",
+  "private": true,
+  "type": "commonjs",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test --test-concurrency=1 \"tests/*.test.js\"",
+    "e2e": "playwright test -c tests/e2e/playwright.config.js"
+  },
+  "dependencies": {
+    "bcryptjs": "3.0.3",
+    "better-sqlite3": "13.0.3",
+    "chart.js": "4.6.1",
+    "express": "5.3.0",
+    "express-rate-limit": "8.7.1",
+    "express-session": "1.19.0",
+    "helmet": "8.3.0",
+    "oracledb": "26.0.0"
+  },
+  "devDependencies": {
+    "supertest": "7.3.1"
+  }
+}

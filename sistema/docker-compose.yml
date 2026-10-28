@@ -1,0 +1,69 @@
+# Arranque: cp .env.example .env  (edite ADMIN_PASSWORD y SESSION_SECRET)  y luego  docker compose up --build
+name: sistema-auditoria-iso27001
+services:
+  app:
+    build:
+      context: .
+      target: final
+    image: sistema-auditoria-iso27001:1.0
+    container_name: sistema-auditoria-iso27001
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      PORT: "3000"
+      DB_ARCHIVO: /app/datos/sistema.db
+      ADMIN_USER: ${ADMIN_USER:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      SESSION_SECRET: ${SESSION_SECRET:-}
+      PERMITIR_REGISTRO: ${PERMITIR_REGISTRO:-true}
+    volumes:
+      - datos_sistema:/app/datos
+    # Las bases del laboratorio corren en el Mac: desde este contenedor se alcanzan como host.docker.internal
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  # Instancia desechable del sistema solo para las pruebas de punta a punta: datos en memoria (tmpfs),
+  # su propio administrador (E2E_ADMIN_CLAVE) y sin tocar los usuarios ni el historial reales.
+  app-e2e:
+    profiles: ["e2e"]
+    image: sistema-auditoria-iso27001:1.0
+    build:
+      context: .
+      target: final
+    environment:
+      DB_ARCHIVO: /app/datos/sistema.db
+      ADMIN_USER: admin
+      ADMIN_PASSWORD: ${E2E_ADMIN_CLAVE:-}
+      SESSION_SECRET: e2e-solo-pruebas-${E2E_ADMIN_CLAVE:-}
+      PERMITIR_REGISTRO: "true"
+    tmpfs:
+      - /app/datos:uid=1000,gid=1000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  # Pruebas de punta a punta con Playwright (opcional): docker compose --profile e2e run --rm e2e
+  e2e:
+    profiles: ["e2e"]
+    image: mcr.microsoft.com/playwright:v1.64.1-noble
+    depends_on: [app-e2e]
+    working_dir: /pw
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      # Se usa el nombre del servicio app-e2e; no "app", que es un TLD en la lista HSTS de Chromium
+      BASE_URL: http://app-e2e:3000
+    volumes:
+      - ./tests/e2e:/fuente/e2e:ro
+      - ./docs/capturas:/pw/capturas
+      - ./tests/e2e/resultados:/pw/resultados
+    command: >
+      sh -c "cp /fuente/e2e/*.js /pw/ && npm init -y >/dev/null && npm i --no-audit --no-fund @playwright/test@1.64.1 >/dev/null
+      && npx playwright test -c playwright.config.js"
+
+volumes:
+  datos_sistema:

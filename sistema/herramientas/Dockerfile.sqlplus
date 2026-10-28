@@ -1,0 +1,12 @@
+# Imagen auxiliar (opcional) con SQL*Plus de Instant Client arm64 para aplicar
+# sql/crear_usuario_auditoria.sql por red, sin entrar al contenedor de la base.
+FROM debian:bookworm-slim
+RUN apt-get update && apt-get install -y --no-install-recommends libaio1 unzip curl ca-certificates \
+ && mkdir -p /opt/oracle && cd /tmp \
+ && for p in basiclite sqlplus; do curl -fsSL -o $p.zip https://download.oracle.com/otn_software/linux/instantclient/instantclient-$p-linux-arm64.zip && unzip -qo $p.zip -d /opt/oracle && rm $p.zip; done \
+ && ln -s /opt/oracle/instantclient_* /opt/oracle/instantclient \
+ && echo /opt/oracle/instantclient > /etc/ld.so.conf.d/oic.conf && ldconfig \
+ && apt-get purge -y unzip curl && apt-get autoremove -y && rm -rf /var/lib/apt/lists/*
+ENV PATH=/opt/oracle/instantclient:$PATH
+WORKDIR /sql
+ENTRYPOINT ["sqlplus"]

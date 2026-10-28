@@ -1,0 +1,33 @@
+Resumen de verificacion - 2026-10-19 15:55:49 - contenedor eif402-iso27001
+-----------------------------------------------------------------------------
+PB-00  | CUMPLE     | FREEPDB1 READ WRITE; SEGCONF.CLIENTES=60 filas; SEGCONF_DEV.CLIENTES=60 filas
+PB-01a | NO CUMPLE  | Cuenta de demostracion SCOTT: OPEN
+PB-01b | NO CUMPLE  | Cuentas abiertas con clave por defecto: 1 (SCOTT)
+PB-02a | NO CUMPLE  | Cuentas con FAILED_LOGIN_ATTEMPTS > 5 o ilimitado: 6 de 6
+PB-02b | NO CUMPLE  | Cuentas sin PASSWORD_VERIFY_FUNCTION: 6 de 6
+PB-02c | NO CUMPLE  | Cuentas con PASSWORD_LIFE_TIME > 90 dias o ilimitado: 6 de 6
+PB-03a | NO CUMPLE  | Usuarios/roles no administrativos con SELECT ANY TABLE: 1 (APP_REPORTES)
+PB-03b | NO CUMPLE  | Paquetes UTL_* con EXECUTE para PUBLIC: 5 (UTL_FILE,UTL_HTTP,UTL_INADDR,UTL_SMTP,UTL_TCP)
+PB-03c | NO CUMPLE  | Permisos directos a usuarios sobre SEGCONF.CLIENTES: 3 (APP_CONSULTA:SELECT,APP_SOPORTE:SELECT,SEGCONF_DEV:SELECT)
+PB-04a | NO CUMPLE  | Keystore TDE en FREEPDB1: NOT_AVAILABLE
+PB-04b | NO CUMPLE  | Tablespace TS_SEGCONF_ENC cifrado: N/E
+PB-04c | NO CUMPLE  | Segmentos de SEGCONF.CLIENTES (tabla e indices) en tablespace cifrado: 0 de 2
+PB-05a | NO CUMPLE  | Politicas de redaccion habilitadas sobre SEGCONF.CLIENTES: 0
+PB-05b | NO CUMPLE  | APP_CONSULTA ve tarjeta=4000-0000-0000-0001 email=luis.rojas1@correo-ficticio.test salario=465485
+PB-06a | NO CUMPLE  | Politicas VPD habilitadas sobre SEGCONF.CLIENTES: 0
+PB-06b | NO CUMPLE  | APP_SOPORTE ve 60 de 60 filas en 7 provincia(s); esperado 9 en 1 (HEREDIA)
+PB-07a | NO CUMPLE  | Politicas unificadas habilitadas que auditan SELECT sobre SEGCONF.CLIENTES: 0
+PB-07b | NO CUMPLE  | Registros de auditoria del SELECT de prueba de APP_CONSULTA: 0
+PB-08a | NO CUMPLE  | Sesion TCP: cifrado=NINGUNO; integridad=NINGUNA
+PB-08b | NO CUMPLE  | Cliente sin cifrado logro conectarse en texto claro
+PB-09a | NO CUMPLE  | Modo de registro de la base: NOARCHIVELOG
+PB-09b | NO CUMPLE  | Piezas de respaldo de FREEPDB1: cifradas=0, sin cifrar=0
+PB-10  | NO CUMPLE  | Filas del clon con algun dato personal identico a produccion: 60 de 60
+PB-11a | NO CUMPLE  | Objetos en la papelera de SEGCONF/SEGCONF_DEV: 1 (SEGCONF.CLIENTES_RESPALDO)
+PB-11b | NO CUMPLE  | Copias temporales de datos confidenciales: 1 (SEGCONF.CLIENTES_EXPORT_TMP)
+PB-12a | NO CUMPLE  | APP_REPORTES sobre el detalle de CLIENTES: LEYO 60 filas
+PB-12b | NO CUMPLE  | SEGCONF_DEV sobre SEGCONF.CLIENTES: LEYO 60 filas
+-----------------------------------------------------------------------------
+CUMPLE      1
+NO CUMPLE   26
+NO DISPON.  0

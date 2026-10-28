@@ -1,0 +1,21 @@
+/* Estilos de impresión: el informe se guarda como PDF desde el navegador */
+@page { size: A4; margin: 16mm 14mm 18mm; }
+html, body { background: #fff !important; }
+body { font-size: 10.5pt; color: #000; }
+.no-imprimir, .lateral, .barra-movil, .notificaciones, .saltar, .boton, .boton-terminal, .segmentado { display: none !important; }
+.app, .app-informe { display: block !important; background: #fff !important; }
+.informe-raiz { padding: 0 !important; }
+.informe-hoja { box-shadow: none !important; padding: 0 !important; max-width: none !important; border-radius: 0 !important; }
+.informe-seccion { break-inside: auto; }
+.informe-seccion > h2 { break-after: avoid; }
+.informe-control { break-inside: auto; }
+.informe-prueba { break-inside: avoid; }
+pre.informe-terminal { background: #f4f4f4 !important; color: #000 !important; border: 1px solid #bbb; font-size: 7.5pt; }
+.chip, .tile, .medidor-texto, .prioridad-pos { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.medidor .arco, .medidor .pista { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.tabla th { background: #eee !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.tabla tr { break-inside: avoid; }
+a { color: #000; text-decoration: none; }
+/* Si se imprime desde la vista de resultados, se ocultan diálogos y se expande el contenido */
+.contenido { padding: 0 !important; }
+dialog { display: none !important; }

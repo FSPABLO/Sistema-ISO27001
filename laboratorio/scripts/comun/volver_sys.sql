@@ -1,0 +1,4 @@
+-- volver_sys.sql - regresa a SYSDBA en la PDB tras conectarse como otro usuario
+CONNECT / AS SYSDBA
+ALTER SESSION SET CONTAINER = &PDB;
+SET SERVEROUTPUT ON SIZE UNLIMITED FORMAT WRAPPED
